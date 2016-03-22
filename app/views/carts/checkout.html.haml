@@ -14,7 +14,6 @@
     Total price:
     =number_to_currency @cart.total_price
 
-
 =form_for @order_form, url: orders_path do |f|
   =render "orders/errors"
 
@@ -30,8 +29,15 @@
         %p.col-md-6=u.text_field :address, placeholder: "Address", class: "form-control"
         %p.col-md-3=u.text_field :postal_code, placeholder: "Postal code / Zipcode", class: "form-control"
         %p.col-md-3=u.text_field :city, placeholder: "City", class: "form-control"
-      %p=u.country_select :country, { priority_countries: [ "KH", "US", "TH", "JP", "KR" ] }, { class: "form-control" }
+      %p=u.country_select :country, { priority_countries: [ "GB", "US", "DE", "ES", "PT" ] }, { class: "form-control" }
 
       %p=u.text_field :phone, class: "form-control", placeholder: "Phone"
 
+  #dropin
+
   %p=f.submit "Place order", class: "btn btn-primary"
+
+:javascript
+  braintree.setup("#{@client_token}", 'dropin', {
+    container: 'dropin'
+  });
