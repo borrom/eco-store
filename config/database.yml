@@ -26,3 +26,5 @@ production:
   adapter: postgresql
   encoding: unicode
   database: blog_development
+  username: user_name
+  password:
